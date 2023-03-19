@@ -1,5 +1,5 @@
-FROM openjdk:8-jdk-alpine
-VOLUME /tmp
+FROM ajju13/tomcat-8:v1.0
+RUN rm -rf /opt/tomcat/webapps/*
+COPY ./target/*.war /opt/tomcat/webapps/hello.war
 EXPOSE 8080
-ADD target/*.jar app.jar
-ENTRYPOINT [ "sh", "-c", "java -jar /app.jar" ]
+ENTRYPOINT ["/opt/tomcat/bin/catalina.sh", "run"]
